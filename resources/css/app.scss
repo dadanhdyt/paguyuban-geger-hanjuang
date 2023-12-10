@@ -1,0 +1,502 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "../../node_modules/font-awesome/scss/font-awesome.scss";
+@import "https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap";
+
+@font-face {
+    font-family: "Mandala";
+    src: url('../fonts/Mandala\ Regular.otf');
+}
+
+:root {
+    --mandala: "Mandala";
+    --font-default: "Rubik";
+}
+
+$primary: green;
+$topNavHeight: 30px;
+$mainNavHeight: 60px;
+$mainNavColor: white;
+/**
+top navbar
+hiro section
+about
+team
+*/
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.main_header {
+    z-index: 9;
+    position: fixed;
+    width: 100%;
+
+    .main_header__top_nav {
+        display: none;
+        height: $topNavHeight;
+
+        .main_header__top_nav__wrap {
+            display: flex;
+            color: white;
+            height: $topNavHeight;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    .main_header__main {
+        background-color: $mainNavColor;
+        @apply shadow;
+
+        .container {
+            .main_header__main__center {
+                display: flex;
+                height: $mainNavHeight;
+                align-items: center;
+                width: 100%;
+                justify-content: space-between;
+
+                .main_header__main__center__nav_menu {
+                    position: fixed;
+                    top: 0;
+                    transition: transform 300ms cubic-bezier(0.23, 1, 0.320, 1);
+
+                    width: 100%;
+                    transform: translateY(-120%);
+                    height: 100%;
+                    left: 0;
+                    background-color: white;
+
+                    &.menu_is_active {
+                        transform: translateY(0%);
+                    }
+
+                    .links {
+                        align-items: center;
+                        padding: 3rem;
+                        margin: 0;
+                        list-style: none;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+
+                        li {
+                            text-align: center;
+                            width: 100%;
+
+                            a {
+                                display: block;
+                                font-family: var(--mandala);
+                            }
+
+                            &:not(.with_button) {
+
+                                a {
+                                    position: relative;
+                                    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+                                    &:hover {
+                                        color: red;
+                                    }
+
+                                    color: #333333;
+                                }
+
+                            }
+
+                            &:is(.with_button) a {
+                                background: linear-gradient(135deg, #e66503 0%, #ffb05c 100%);
+                                box-shadow: 0px 6px 20px -10px #ffb05c;
+                                padding: 0.5em 2em;
+                                color: white;
+                                width: 50%;
+                                margin: auto;
+                                border-radius: 10px;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+
+                .main_geader__main__center__nav_logo {
+                    img {
+                        width: 50px;
+                    }
+                }
+
+                .main_geader__main__center__nav_toggle {
+                    display: flex;
+                    align-items: center;
+                    padding: 4px;
+                    position: relative;
+                    border-radius: 2px;
+                    justify-content: center;
+
+                    .toggle_button {
+                        span {
+                            transition: transform 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                            background-color: #333333;
+                            width: 30px;
+                            margin: 4px;
+                            display: block;
+                            height: 2px;
+                        }
+
+                        &.menu_is_active {
+                            span {
+                                background-color: #333333;
+                                width: 30px;
+                                margin: 4px;
+                                display: block;
+                                height: 2px;
+
+                                &:first-child {
+                                    transform: rotate(136deg);
+                                    position: absolute;
+                                }
+
+                                &:last-child {
+                                    transform: rotate(46deg);
+                                }
+
+                                &:nth-child(2) {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//box intro
+
+.box_intro {
+    display: grid;
+    height: 100vh;
+    place-items: center;
+}
+
+.box_intro__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-family: var(--font-default);
+    justify-content: center;
+    gap: 30px;
+
+    h3 {
+        font-size: 3rem;
+    }
+}
+
+.box_intro>* {
+    grid-area: 1/-1;
+}
+
+.box_intro .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    a {
+        text-align: center;
+        width: 100%;
+        display: block;
+        background: #e66503;
+        padding: 10px 3em;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+}
+
+.box_intro .box_intro__thumb {
+    position: relative;
+    width: 100%;
+    background-repeat: no-repeat;
+    z-index: -1;
+    height: 100vh;
+    background-size: cover;
+    background-image: url('../img/hiro-bg.jpg');
+
+    &::before {
+        content: '';
+        background: linear-gradient(179deg, rgba(246, 245, 250, 0) 0%, rgb(0 0 0) 100%);
+        position: absolute;
+        width: 100%;
+        display: block;
+        height: 100%;
+    }
+}
+
+//togue
+.togue {
+    background-color: transparent;
+    margin-top: -31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .togue__wrapper {
+        background-color: white;
+        height: 50px;
+        width: 330px;
+        overflow: hidden;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        padding: none;
+
+        .sponsored_by {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            padding: 6px 3px;
+            color: white;
+            font-weight: bold;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin: auto;
+            background: linear-gradient(135deg, #e66503 0%, #ffb05c 100%);
+            text-align: center;
+            display: block;
+        }
+    }
+}
+
+// @media screen and(min-width:600px) {
+
+// }
+.about .about__content {
+    @apply md:p-0 p-3 md:w-9/12 mx-auto mt-2 md:mt-4;
+
+    ul {
+
+        list-style: circle;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+
+        li {
+            &::marker {
+                background-color: red;
+            }
+        }
+    }
+
+
+}
+
+@media (min-width:768px) {
+    .togue {
+        background-color: transparent;
+        margin-top: -45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .togue__wrapper {
+            background-color: white;
+            height: 50px;
+            width: 500px;
+            border-top-left-radius: 90px;
+            border-top-right-radius: 90px;
+
+
+        }
+    }
+
+    .box_intro {
+        .box_intro__content {
+            padding: 0 20rem;
+        }
+    }
+
+    .main_header {
+        position: fixed;
+        z-index: 2;
+        transition:all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        background: white;
+        @apply shadow-lg;
+        .main_header__top_nav {
+            display: none;
+
+        }
+
+        .main_header__main {
+            background-color: transparent;
+            box-shadow: none;
+
+            .container {
+                .main_header__main__center {
+                    height: 80px;
+
+                    .main_header__main__center__nav_menu {
+                        background-color: transparent;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        transform: translateY(0);
+
+                        .links {
+                            flex-direction: row;
+                            gap: 30px;
+
+                            li {
+                                text-align: center;
+                                width: 100%;
+                                height: 100%;
+
+                                &:not(.with_button) a {
+                                    color: #333333;
+                                    display: block;
+                                    position: relative;
+                                    padding: 5px;
+
+                                    &:hover {
+                                        color: orange;
+                                    }
+
+                                    &::before,
+                                    &::after {
+                                        border-radius: 20px;
+                                    }
+
+                                    &::before {
+                                        display: block;
+                                        content: '';
+                                        transition: transform 0.4s ease-in-out;
+                                        position: absolute;
+                                        width: 100%;
+                                        background-color: orange;
+                                        transform-origin: left;
+                                        height: 2px;
+                                        transform: scaleX(0);
+                                        left: 0;
+                                        top: 0;
+                                        right: 0;
+
+                                    }
+
+                                    &:hover {
+                                        &::before {
+                                            transform-origin: right;
+                                            transform: scaleX(1);
+                                        }
+
+                                    }
+
+                                    &::after {
+                                        display: block;
+                                        content: '';
+                                        transition: transform 0.4s ease-in-out;
+                                        position: absolute;
+                                        width: 100%;
+                                        background-color: orange;
+                                        transform-origin: right;
+                                        height: 2px;
+                                        left: 0;
+                                        right: 0;
+                                        top: 0;
+                                        transform: scaleX(0);
+                                        bottom: 0;
+
+                                    }
+
+                                    &:hover {
+                                        &::after {
+                                            transform-origin: left;
+                                            transform: scaleX(1);
+                                        }
+
+                                    }
+
+                                }
+
+                                &:is(.with_button) a {
+                                    width: 100%;
+
+
+                                }
+
+
+                            }
+                        }
+                    }
+
+                    .main_geader__main__center__nav_logo {
+                        background: white;
+                        @apply shadow;
+                        border-bottom-left-radius: 20px;
+                        border-bottom-right-radius: 20px;
+                        padding: 1em;
+                        margin-top:50px;
+                        img {
+                            width: 100px;
+                        }
+                    }
+
+                    .main_geader__main__center__nav_toggle {
+                        display: none;
+
+
+                    }
+                }
+            }
+        }
+        // &.scrolled{
+           
+        //     @apply fixed bg-white shadow backdrop-blur-sm;
+        //     .main_header__main{
+        //         .container {
+        //             .main_header__main__center {
+                       
+        //                 .main_header__main__center__nav_menu {
+        //                     .links{
+        //                         li {
+        //                             a{
+        //                                 color: black;
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+    }
+
+
+}
+.misi_items{
+    counter-reset: numeric;
+    column-count: 10;
+    font-family: var(--font-default);
+}
+.misi_item{
+    position: relative;
+    .content{
+        font-family: var(--mandala);
+        border-left: 1px solid #e66503;
+    }
+    &::before{
+        top: 0;
+        content: counter(numeric, decimal-leading-zero);
+        counter-increment: numeric;
+        font-size: 3em;
+        position: absolute;
+        left: 0;
+        color: #e66503;
+        font-weight: bold;
+        display: block;
+    }
+}
